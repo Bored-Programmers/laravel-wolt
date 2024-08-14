@@ -4,6 +4,7 @@ namespace BoredProgrammers\Wolt\DTO;
 
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
+use Spatie\LaravelData\Optional;
 
 class CategoryData extends Data
 {
@@ -13,8 +14,8 @@ class CategoryData extends Data
         public DataCollection $name,
         /** @var SubcategoryData[] */
         public DataCollection $subcategories,
-        /** @var TranslationData[]|null */
-        public ?DataCollection $description = null,
+        /** @var TranslationData[]|Optional */
+        public ?DataCollection $description,
     )
     {
     }

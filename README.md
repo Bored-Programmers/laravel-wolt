@@ -259,7 +259,6 @@ $subcategory = new SubcategoryData(
 
 // Example Category
 $category = new CategoryData(
-    id: 'beverages',
     name: $categoryNameTranslation,
     description: null,
     subcategories: new DataCollection([$subcategory])
@@ -267,7 +266,6 @@ $category = new CategoryData(
 
 // Example Menu
 $menu = new MenuData(
-    id: 'menu-advanced',
     currency: 'USD',
     primary_language: 'en',
     categories: new DataCollection([$category])

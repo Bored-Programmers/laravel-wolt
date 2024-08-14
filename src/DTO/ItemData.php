@@ -4,6 +4,7 @@ namespace BoredProgrammers\Wolt\DTO;
 
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
+use Spatie\LaravelData\Optional;
 
 class ItemData extends Data
 {
@@ -17,18 +18,18 @@ class ItemData extends Data
         public bool $enabled,
         /** @var string[] */
         public array $delivery_methods,
-        /** @var TranslationData[]|null */
-        public ?DataCollection $description = null,
-        public ?float $alcohol_percentage = null,
-        public ?CaffeineContentData $caffeine_content = null,
+        /** @var TranslationData[]|Optional */
+        public DataCollection $description,
+        public Optional|float $alcohol_percentage,
+        public Optional|CaffeineContentData $caffeine_content,
         /** @var WeeklyAvailabilityData[]|null */
-        public ?DataCollection $weekly_availability = null,
+        public Optional|DataCollection $weekly_availability,
         /** @var WeeklyVisibilityData[]|null */
-        public ?DataCollection $weekly_visibility = null,
+        public Optional|DataCollection $weekly_visibility,
         /** @var OptionData[]|null */
-        public ?DataCollection $options = null,
-        public ?string $external_data = null,
-        public ?ProductInformationData $product_information = null
+        public Optional|DataCollection $options,
+        public Optional|string $external_data,
+        public Optional|ProductInformationData $product_information
     )
     {
     }

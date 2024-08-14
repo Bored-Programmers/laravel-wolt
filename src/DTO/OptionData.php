@@ -4,6 +4,7 @@ namespace BoredProgrammers\Wolt\DTO;
 
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
+use Spatie\LaravelData\Optional;
 
 class OptionData extends Data
 {
@@ -15,7 +16,7 @@ class OptionData extends Data
         public SelectionRangeData $selection_range,
         /** @var OptionValueData[] */
         public DataCollection $values,
-        public ?string $external_data = null,
+        public Optional|string $external_data,
     )
     {
     }
