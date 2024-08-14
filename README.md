@@ -21,7 +21,6 @@ easy-to-use API for syncing your menu and managing orders.
     - [Mark Order as Ready](#mark-order-as-ready)
     - [Mark Order as Delivered](#mark-order-as-delivered)
     - [Confirm Preorder](#confirm-preorder)
-    - **[Example of Syncing Menu](#example-of-syncing-menu)**
 - [Contribution Guidelines](#contribution-guidelines)
 - [Changelog](#changelog)
 - [License](#license)
@@ -85,191 +84,193 @@ use Spatie\LaravelData\DataCollection;
 
 // Example Translations for Category
 $categoryNameTranslation = new DataCollection([
-    new TranslationData(lang: 'en', value: 'Beverages'),
-    new TranslationData(lang: 'fr', value: 'Boissons')
+    TranslationData::from(['lang' => 'en', 'value' => 'Beverages']),
+    TranslationData::from(['lang' => 'fr', 'value' => 'Boissons'])
 ]);
 
 // Example Translations for Subcategory
 $subCategoryNameTranslation = new DataCollection([
-    new TranslationData(lang: 'en', value: 'Hot Drinks'),
-    new TranslationData(lang: 'fr', value: 'Boissons Chaudes')
+    TranslationData::from(['lang' => 'en', 'value' => 'Hot Drinks']),
+    TranslationData::from(['lang' => 'fr', 'value' => 'Boissons Chaudes'])
 ]);
 
 // Example Translations for Item
 $itemNameTranslation = new DataCollection([
-    new TranslationData(lang: 'en', value: 'Espresso'),
-    new TranslationData(lang: 'fr', value: 'Espresso')
+    TranslationData::from(['lang' => 'en', 'value' => 'Espresso']),
+    TranslationData::from(['lang' => 'fr', 'value' => 'Espresso'])
 ]);
 
 $itemDescriptionTranslation = new DataCollection([
-    new TranslationData(lang: 'en', value: 'Rich and bold espresso coffee'),
-    new TranslationData(lang: 'fr', value: 'Café espresso riche et audacieux')
+    TranslationData::from(['lang' => 'en', 'value' => 'Rich and bold espresso coffee']),
+    TranslationData::from(['lang' => 'fr', 'value' => 'Café espresso riche et audacieux'])
 ]);
 
 // Example Translations for Options
 $optionNameTranslation = new DataCollection([
-    new TranslationData(lang: 'en', value: 'Milk Type'),
-    new TranslationData(lang: 'fr', value: 'Type de Lait')
+    TranslationData::from(['lang' => 'en', 'value' => 'Milk Type']),
+    TranslationData::from(['lang' => 'fr', 'value' => 'Type de Lait'])
 ]);
 
 $optionValueNameTranslation1 = new DataCollection([
-    new TranslationData(lang: 'en', value: 'Whole Milk'),
-    new TranslationData(lang: 'fr', value: 'Lait entier')
+    TranslationData::from(['lang' => 'en', 'value' => 'Whole Milk']),
+    TranslationData::from(['lang' => 'fr', 'value' => 'Lait entier'])
 ]);
 
 $optionValueNameTranslation2 = new DataCollection([
-    new TranslationData(lang: 'en', value: 'Soy Milk'),
-    new TranslationData(lang: 'fr', value: 'Lait de soja')
+    TranslationData::from(['lang' => 'en', 'value' => 'Soy Milk']),
+    TranslationData::from(['lang' => 'fr', 'value' => 'Lait de soja'])
 ]);
 
 // Example Sub-option Value
 $subOptionValueNameTranslation = new DataCollection([
-    new TranslationData(lang: 'en', value: 'Vanilla Syrup'),
-    new TranslationData(lang: 'fr', value: 'Sirop de vanille')
+    TranslationData::from(['lang' => 'en', 'value' => 'Vanilla Syrup']),
+    TranslationData::from(['lang' => 'fr', 'value' => 'Sirop de vanille'])
 ]);
 
 // Example Nutrition Information
-$nutritionInformation = new NutritionInformationData(
-    serving_size: 'per_100_ml',
-    nutrition_values: new NutritionValuesData(
-        energy_kcal: new NutrientData(unit: 'kcal', value: 5),
-        energy_kj: new NutrientData(unit: 'kj', value: 20),
-        fats: new NutrientData(unit: 'g', value: 0.1),
-        saturated_fats: new NutrientData(unit: 'g', value: 0.05),
-        mono_unsaturated_fats: new NutrientData(unit: 'g', value: 0.01),
-        poly_unsaturated_fats: new NutrientData(unit: 'g', value: 0.01),
-        carbohydrate: new NutrientData(unit: 'g', value: 0.5),
-        sugar: new NutrientData(unit: 'g', value: 0.1),
-        starch: new NutrientData(unit: 'g', value: 0.2),
-        polyols: new NutrientData(unit: 'g', value: 0.0),
-        protein: new NutrientData(unit: 'g', value: 0.2),
-        salt: new NutrientData(unit: 'g', value: 0.01),
-        sodium: new NutrientData(unit: 'mg', value: 5),
-        fibres: new NutrientData(unit: 'g', value: 0.1),
-        vitamin_c: new NutrientData(unit: 'mg', value: 0.0),
-        potassium: new NutrientData(unit: 'mg', value: 80),
-        calcium: new NutrientData(unit: 'mg', value: 10),
-        magnesium: new NutrientData(unit: 'mg', value: 2),
-        chloride: new NutrientData(unit: 'mg', value: 5),
-        fluoride: new NutrientData(unit: 'mg', value: 0.0)
-    )
-);
+$nutritionInformation = NutritionInformationData::from([
+    'serving_size' => 'per_100_ml',
+    'nutrition_values' => NutritionValuesData::from([
+        'energy_kcal' => NutrientData::from(['unit' => 'kcal', 'value' => 5]),
+        'energy_kj' => NutrientData::from(['unit' => 'kj', 'value' => 20]),
+        'fats' => NutrientData::from(['unit' => 'g', 'value' => 0.1]),
+        'saturated_fats' => NutrientData::from(['unit' => 'g', 'value' => 0.05]),
+        'mono_unsaturated_fats' => NutrientData::from(['unit' => 'g', 'value' => 0.01]),
+        'poly_unsaturated_fats' => NutrientData::from(['unit' => 'g', 'value' => 0.01]),
+        'carbohydrate' => NutrientData::from(['unit' => 'g', 'value' => 0.5]),
+        'sugar' => NutrientData::from(['unit' => 'g', 'value' => 0.1]),
+        'starch' => NutrientData::from(['unit' => 'g', 'value' => 0.2]),
+        'polyols' => NutrientData::from(['unit' => 'g', 'value' => 0.0]),
+        'protein' => NutrientData::from(['unit' => 'g', 'value' => 0.2]),
+        'salt' => NutrientData::from(['unit' => 'g', 'value' => 0.01]),
+        'sodium' => NutrientData::from(['unit' => 'mg', 'value' => 5]),
+        'fibres' => NutrientData::from(['unit' => 'g', 'value' => 0.1]),
+        'vitamin_c' => NutrientData::from(['unit' => 'mg', 'value' => 0.0]),
+        'potassium' => NutrientData::from(['unit' => 'mg', 'value' => 80]),
+        'calcium' => NutrientData::from(['unit' => 'mg', 'value' => 10]),
+        'magnesium' => NutrientData::from(['unit' => 'mg', 'value' => 2]),
+        'chloride' => NutrientData::from(['unit' => 'mg', 'value' => 5]),
+        'fluoride' => NutrientData::from(['unit' => 'mg', 'value' => 0.0])
+    ])
+]);
 
 // Example Product Information
-$productInformation = new ProductInformationData(
-    ingredients: new DataCollection([
-        new TranslationData(lang: 'en', value: 'Water, Coffee Beans'),
-        new TranslationData(lang: 'fr', value: 'Eau, Grains de café')
+$productInformation = ProductInformationData::from([
+    'ingredients' => new DataCollection([
+        TranslationData::from(['lang' => 'en', 'value' => 'Water, Coffee Beans']),
+        TranslationData::from(['lang' => 'fr', 'value' => 'Eau, Grains de café'])
     ]),
-    additives: new DataCollection([
-        new TranslationData(lang: 'en', value: 'None'),
-        new TranslationData(lang: 'fr', value: 'Aucun')
+    'additives' => new DataCollection([
+        TranslationData::from(['lang' => 'en', 'value' => 'None']),
+        TranslationData::from(['lang' => 'fr', 'value' => 'Aucun'])
     ]),
-    nutrition_facts: new DataCollection([
-        new TranslationData(lang: 'en', value: 'Low calories'),
-        new TranslationData(lang: 'fr', value: 'Faible en calories')
+    'nutrition_facts' => new DataCollection([
+        TranslationData::from(['lang' => 'en', 'value' => 'Low calories']),
+        TranslationData::from(['lang' => 'fr', 'value' => 'Faible en calories'])
     ]),
-    nutrition_information: $nutritionInformation,
-    allergens: new DataCollection([
-        new TranslationData(lang: 'en', value: 'None'),
-        new TranslationData(lang: 'fr', value: 'Aucun')
+    'nutrition_information' => $
+
+nutritionInformation,
+    'allergens' => new DataCollection([
+        TranslationData::from(['lang' => 'en', 'value' => 'None']),
+        TranslationData::from(['lang' => 'fr', 'value' => 'Aucun'])
     ]),
-    producer_information: new DataCollection([
-        new TranslationData(lang: 'en', value: 'Local Roastery'),
-        new TranslationData(lang: 'fr', value: 'Torréfacteur local')
+    'producer_information' => new DataCollection([
+        TranslationData::from(['lang' => 'en', 'value' => 'Local Roastery']),
+        TranslationData::from(['lang' => 'fr', 'value' => 'Torréfacteur local'])
     ])
-);
+]);
 
 // Example Option with Sub-option Values
-$optionValue1 = new OptionValueData(
-    name: $optionValueNameTranslation1,
-    selection_range: new SelectionRangeData(min: 0, max: 1),
-    price: 0.50,
-    enabled: true,
-    default: true,
-    external_data: 'option-value-1',
-    sub_option_values: new DataCollection([
-        new SubOptionValueData(
-            name: $subOptionValueNameTranslation,
-            selection_range: new SelectionRangeData(min: 0, max: 1),
-            price: 0.20,
-            enabled: true,
-            default: false,
-            external_data: 'sub-option-value-1'
-        )
+$optionValue1 = OptionValueData::from([
+    'name' => $optionValueNameTranslation1,
+    'selection_range' => SelectionRangeData::from(['min' => 0, 'max' => 1]),
+    'price' => 0.50,
+    'enabled' => true,
+    'default' => true,
+    'external_data' => 'option-value-1',
+    'sub_option_values' => new DataCollection([
+        SubOptionValueData::from([
+            'name' => $subOptionValueNameTranslation,
+            'selection_range' => SelectionRangeData::from(['min' => 0, 'max' => 1]),
+            'price' => 0.20,
+            'enabled' => true,
+            'default' => false,
+            'external_data' => 'sub-option-value-1'
+        ])
     ])
-);
+]);
 
-$optionValue2 = new OptionValueData(
-    name: $optionValueNameTranslation2,
-    selection_range: new SelectionRangeData(min: 0, max: 1),
-    price: 0.60,
-    enabled: true,
-    default: false,
-    external_data: 'option-value-2',
-    sub_option_values: null
-);
+$optionValue2 = OptionValueData::from([
+    'name' => $optionValueNameTranslation2,
+    'selection_range' => SelectionRangeData::from(['min' => 0, 'max' => 1]),
+    'price' => 0.60,
+    'enabled' => true,
+    'default' => false,
+    'external_data' => 'option-value-2',
+    'sub_option_values' => null
+]);
 
-$option = new OptionData(
-    name: $optionNameTranslation,
-    type: 'SingleChoice',
-    selection_range: new SelectionRangeData(min: 1, max: 1),
-    external_data: 'option-1',
-    values: new DataCollection([$optionValue1, $optionValue2])
-);
+$option = OptionData::from([
+    'name' => $optionNameTranslation,
+    'type' => 'SingleChoice',
+    'selection_range' => SelectionRangeData::from(['min' => 1, 'max' => 1]),
+    'external_data' => 'option-1',
+    'values' => new DataCollection([$optionValue1, $optionValue2])
+]);
 
 // Example Item
-$item = new ItemData(
-    name: $itemNameTranslation,
-    description: $itemDescriptionTranslation,
-    image_url: 'https://example.com/espresso.jpg',
-    price: 2.99,
-    sales_tax_percentage: 0.07,
-    alcohol_percentage: null,
-    caffeine_content: new CaffeineContentData(serving_size: 'per_100_ml', value: 212.0),
-    weekly_availability: new DataCollection([
-        new WeeklyAvailabilityData(
-            opening_day: 'MONDAY',
-            opening_time: '08:00',
-            closing_day: 'MONDAY',
-            closing_time: '20:00'
-        )
+$item = ItemData::from([
+    'name' => $itemNameTranslation,
+    'description' => $itemDescriptionTranslation,
+    'image_url' => 'https://example.com/espresso.jpg',
+    'price' => 2.99,
+    'sales_tax_percentage' => 0.07,
+    'alcohol_percentage' => null,
+    'caffeine_content' => CaffeineContentData::from(['serving_size' => 'per_100_ml', 'value' => 212.0]),
+    'weekly_availability' => new DataCollection([
+        WeeklyAvailabilityData::from([
+            'opening_day' => 'MONDAY',
+            'opening_time' => '08:00',
+            'closing_day' => 'MONDAY',
+            'closing_time' => '20:00'
+        ])
     ]),
-    weekly_visibility: new DataCollection([
-        new WeeklyVisibilityData(
-            opening_day: 'MONDAY',
-            opening_time: '08:00',
-            closing_day: 'MONDAY',
-            closing_time: '20:00'
-        )
+    'weekly_visibility' => new DataCollection([
+        WeeklyVisibilityData::from([
+            'opening_day' => 'MONDAY',
+            'opening_time' => '08:00',
+            'closing_day' => 'MONDAY',
+            'closing_time' => '20:00'
+        ])
     ]),
-    enabled: true,
-    delivery_methods: ['takeaway', 'homedelivery'],
-    options: new DataCollection([$option]),
-    external_data: 'item-espresso-001',
-    product_information: $productInformation
-);
+    'enabled' => true,
+    'delivery_methods' => ['takeaway', 'homedelivery'],
+    'options' => new DataCollection([$option]),
+    'external_data' => 'item-espresso-001',
+    'product_information' => $productInformation
+]);
 
 // Example Subcategory
-$subcategory = new SubcategoryData(
-    name: $subCategoryNameTranslation,
-    description: null,
-    items: new DataCollection([$item])
-);
+$subcategory = SubcategoryData::from([
+    'name' => $subCategoryNameTranslation,
+    'description' => null,
+    'items' => new DataCollection([$item])
+]);
 
 // Example Category
-$category = new CategoryData(
-    name: $categoryNameTranslation,
-    description: null,
-    subcategories: new DataCollection([$subcategory])
-);
+$category = CategoryData::from([
+    'name' => $categoryNameTranslation,
+    'description' => null,
+    'subcategories' => new DataCollection([$subcategory])
+]);
 
 // Example Menu
-$menu = new MenuData(
-    currency: 'USD',
-    primary_language: 'en',
-    categories: new DataCollection([$category])
-);
+$menu = MenuData::from([
+    'currency' => 'USD',
+    'primary_language' => 'en',
+    'categories' => new DataCollection([$category])
+]);
 
 $response = WoltService::syncMenu($menuData);
 ```
@@ -359,7 +360,7 @@ For a detailed history of changes, see [releases](https://github.com/Bored-Progr
 
 ## License
 
-This project is licensed under the [MIT license](https://github.com/Bored-Programmers/wolt/blob/main/LICENSE.md).
+This project is licensed under the [MIT license](/LICENSE.md).
 
 ## Contact Information
 
