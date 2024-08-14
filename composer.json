@@ -1,0 +1,45 @@
+{
+  "name": "bored-programmers/wolt",
+  "description": "Wolt is a Laravel package that allows you to integrate your restaurant with the Wolt platform. It provides a simple and easy-to-use API for syncing your menu and managing orders.",
+  "keywords": [
+    "laravel",
+    "grid",
+    "table",
+    "filter",
+    "sort",
+    "pagination",
+    "livewire"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "php": "^8.1|^8.2|^8.3",
+    "laravel/framework": "^10.0|^11.0",
+    "spatie/laravel-data": "^4.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "BoredProgrammers\\Wolt\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Matěj Černý",
+      "email": "mat.cerny3@seznam.cz"
+    }
+  ],
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true,
+    "preferred-install": "dist",
+    "optimize-autoloader": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "WoltServiceProvider"
+      ]
+    }
+  }
+}
