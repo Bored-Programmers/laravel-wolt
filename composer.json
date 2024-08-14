@@ -39,7 +39,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "WoltServiceProvider"
+        "BoredProgrammers\\Wolt\\Providers\\WoltServiceProvider"
       ]
     }
   }
