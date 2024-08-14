@@ -12,8 +12,8 @@ class CategoryData extends Data
     public function __construct(
         /** @var TranslationData[] */
         public DataCollection $name,
-        /** @var SubcategoryData[] */
-        public DataCollection $subcategories,
+        /** @var SubcategoryData[]|Optional */
+        public DataCollection|Optional $subcategories,
         /** @var TranslationData[]|Optional */
         public DataCollection|Optional $description,
     )
