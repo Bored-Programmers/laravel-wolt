@@ -9,7 +9,6 @@ class CategoryData extends Data
 {
 
     public function __construct(
-        public string $id,
         /** @var TranslationData[] */
         public DataCollection $name,
         /** @var SubcategoryData[] */

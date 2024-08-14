@@ -9,7 +9,6 @@ class MenuData extends Data
 {
 
     public function __construct(
-        public string $id,
         public string $currency,
         public string $primary_language,
         /** @var CategoryData[] */
