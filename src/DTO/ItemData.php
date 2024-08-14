@@ -2,27 +2,31 @@
 
 namespace BoredProgrammers\Wolt\DTO;
 
-use BoredProgrammers\Wolt\Enums\WoltDeliveryType;
-use Illuminate\Support\Collection;
-use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\DataCollection;
 
 class ItemData extends Data
 {
-
     public function __construct(
-        #[DataCollectionOf(LanguageValueData::class)]
-        public array|Collection $name,
-        #[DataCollectionOf(OptionData::class)]
-        public array|Collection $options,
+        /** @var \BoredProgrammers\Wolt\DTO\TranslationData[] */
+        public DataCollection $name,
+        /** @var \BoredProgrammers\Wolt\DTO\TranslationData[]|null */
+        public ?DataCollection $description = null,
+        public ?string $image_url,
         public float $price,
-        public ?string $image_url = null,
+        public float $sales_tax_percentage,
+        public ?float $alcohol_percentage = null,
+        public ?CaffeineContentData $caffeine_content = null,
+        /** @var \BoredProgrammers\Wolt\DTO\WeeklyAvailabilityData[]|null */
+        public ?DataCollection $weekly_availability = null,
+        /** @var \BoredProgrammers\Wolt\DTO\WeeklyVisibilityData[]|null */
+        public ?DataCollection $weekly_visibility = null,
+        public bool $enabled,
+        /** @var string[] */
+        public array $delivery_methods,
+        /** @var \BoredProgrammers\Wolt\DTO\OptionData[]|null */
+        public ?DataCollection $options = null,
         public ?string $external_data = null,
-        public float $sales_tax_percentage = 0,
-        public bool $enabled = true,
-        public array|Collection $delivery_methods = [WoltDeliveryType::HOME_DELIVERY, WoltDeliveryType::TAKEAWAY]
-    )
-    {
-    }
-
+        public ?ProductInformationData $product_information = null
+    ) {}
 }

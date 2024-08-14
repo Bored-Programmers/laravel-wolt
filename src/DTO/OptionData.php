@@ -2,23 +2,18 @@
 
 namespace BoredProgrammers\Wolt\DTO;
 
-use Spatie\LaravelData\Attributes\DataCollectionOf;
 use Spatie\LaravelData\Data;
-use Illuminate\Support\Collection;
+use Spatie\LaravelData\DataCollection;
 
 class OptionData extends Data
 {
-
     public function __construct(
-        #[DataCollectionOf(LanguageValueData::class)]
-        public array|Collection $name,
+        /** @var \BoredProgrammers\Wolt\DTO\TranslationData[] */
+        public DataCollection $name,
         public string $type,
-        #[DataCollectionOf(ValueData::class)]
-        public array|Collection $values,
-        public ?SelectionRange $selection_range,
+        public SelectionRangeData $selection_range,
         public ?string $external_data = null,
-    )
-    {
-    }
-
+        /** @var \BoredProgrammers\Wolt\DTO\OptionValueData[] */
+        public DataCollection $values
+    ) {}
 }

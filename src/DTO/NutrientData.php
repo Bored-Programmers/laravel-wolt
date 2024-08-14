@@ -4,14 +4,10 @@ namespace BoredProgrammers\Wolt\DTO;
 
 use Spatie\LaravelData\Data;
 
-class SelectionRange extends Data
+class NutrientData extends Data
 {
-
     public function __construct(
-        public int $min,
-        public int $max,
-    )
-    {
-    }
-
+        public string $unit,
+        public float $value
+    ) {}
 }

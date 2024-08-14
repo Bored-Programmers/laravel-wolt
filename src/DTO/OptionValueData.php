@@ -5,7 +5,7 @@ namespace BoredProgrammers\Wolt\DTO;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\DataCollection;
 
-class SubOptionValueData extends Data
+class OptionValueData extends Data
 {
     public function __construct(
         /** @var \BoredProgrammers\Wolt\DTO\TranslationData[] */
@@ -14,6 +14,8 @@ class SubOptionValueData extends Data
         public float $price,
         public bool $enabled,
         public bool $default,
-        public string $external_data
+        public string $external_data,
+        /** @var \BoredProgrammers\Wolt\DTO\SubOptionValueData[]|null */
+        public ?DataCollection $sub_option_values = null
     ) {}
 }

@@ -22,6 +22,7 @@ Wolt is a Laravel package that allows you to integrate your restaurant with the 
   - [Mark Order as Ready](#mark-order-as-ready)
   - [Mark Order as Delivered](#mark-order-as-delivered)
   - [Confirm Preorder](#confirm-preorder)
+  - [Example](#example)
 - [Contribution Guidelines](#contribution-guidelines)
 - [Changelog](#changelog)
 - [License](#license)
@@ -143,6 +144,74 @@ use BoredProgrammers\Wolt\WoltService;
 
 $orderId = 'your_wolt_order_id';
 $response = WoltService::confirmPreorder($orderId);
+```
+
+### Example
+
+Here is an example of how you can use Wolt in your Laravel application:
+
+```php
+use BoredProgrammers\Wolt\DTO\WoltDTO;
+use BoredProgrammers\Wolt\DTO\CategoryData;
+use BoredProgrammers\Wolt\DTO\ItemData;
+use BoredProgrammers\Wolt\DTO\LanguageValueData;
+use BoredProgrammers\Wolt\DTO\WeeklyAvailability;
+use Illuminate\Support\Collection;
+
+// Create LanguageValueData objects
+$languageValues = [
+    new LanguageValueData('Karamell, Nuss, Vanille', 'de'),
+    new LanguageValueData('Caramel, walnut, vanilla', 'en'),
+    new LanguageValueData('Sirup - karamel, oříšek, vanilka', 'cs')
+];
+
+// Create ItemData objects
+$items = [
+    new ItemData(
+        name: $languageValues,
+        options: [],
+        price: 19.0,
+        image_url: 'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
+        external_data: 'your_internal_id_for_pairing',
+        sales_tax_percentage: 0.0,
+        enabled: true,
+        delivery_methods: [
+            WoltDeliveryType::HOME_DELIVERY,
+            WoltDeliveryType::TAKEAWAY
+        ]
+    )
+    // Add more ItemData objects as needed
+];
+
+// Create WeeklyAvailability objects
+$weeklyAvailability = [
+    new WeeklyAvailability('6', '07:00', '6', '11:00'),
+    new WeeklyAvailability('0', '07:00', '0', '11:00'),
+    new WeeklyAvailability('1', '07:00', '1', '11:00'),
+    new WeeklyAvailability('2', '07:00', '2', '11:00'),
+    new WeeklyAvailability('3', '07:00', '3', '11:00'),
+    new WeeklyAvailability('4', '07:00', '4', '11:00'),
+    new WeeklyAvailability('5', '07:00', '5', '11:00')
+];
+
+// Create CategoryData objects
+$categories = [
+    new CategoryData(
+        items: new Collection($items),
+        name: new Collection([new LanguageValueData('Snídaně', 'cs')]),
+        weekly_availability: new Collection($weeklyAvailability)
+    )
+    // Add more CategoryData objects as needed
+];
+
+// Create WoltDTO object
+$woltDTO = new WoltDTO(
+    currency: 'CZK',
+    primary_language: 'cs',
+    categories: new Collection($categories)
+);
+
+// Now $woltDTO is structured as required
 ```
 
 ## Contribution Guidelines
