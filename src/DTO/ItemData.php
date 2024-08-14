@@ -19,7 +19,7 @@ class ItemData extends Data
         /** @var string[] */
         public array $delivery_methods,
         /** @var TranslationData[]|Optional */
-        public DataCollection $description,
+        public Optional|DataCollection $description,
         public Optional|float $alcohol_percentage,
         public Optional|CaffeineContentData $caffeine_content,
         /** @var WeeklyAvailabilityData[]|null */
