@@ -22,7 +22,7 @@ class ItemData extends Data
         public Optional|DataCollection $description,
         public Optional|float $alcohol_percentage,
         public Optional|CaffeineContentData $caffeine_content,
-        /** @var WeeklyAvailabilityData[]|null */
+        /** @var WeeklyAvailabilityData[]|Optional */
         public Optional|DataCollection $weekly_availability,
         /** @var WeeklyVisibilityData[]|null */
         public Optional|DataCollection $weekly_visibility,
