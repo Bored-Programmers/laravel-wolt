@@ -6,6 +6,7 @@ use Spatie\LaravelData\Data;
 
 class NutritionValuesData extends Data
 {
+
     public function __construct(
         public NutrientData $energy_kcal,
         public NutrientData $energy_kj,
@@ -27,5 +28,8 @@ class NutritionValuesData extends Data
         public NutrientData $magnesium,
         public NutrientData $chloride,
         public NutrientData $fluoride
-    ) {}
+    )
+    {
+    }
+
 }

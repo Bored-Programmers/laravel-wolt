@@ -8,21 +8,22 @@
 [![Total Downloads](https://poser.pugx.org/bored-programmers/wolt/downloads)](//packagist.org/packages/bored-programmers/wolt)
 [![License](https://poser.pugx.org/bored-programmers/wolt/license)](//packagist.org/packages/bored-programmers/wolt)
 
-Wolt is a Laravel package that allows you to integrate your restaurant with the Wolt platform. It provides a simple and easy-to-use API for syncing your menu and managing orders.
+Wolt is a Laravel package that allows you to integrate your restaurant with the Wolt platform. It provides a simple and
+easy-to-use API for syncing your menu and managing orders.
 
 ## Table of Contents
 
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
-  - [Sync Menu](#sync-menu)
-  - [Get Order](#get-order)
-  - [Accept Order](#accept-order)
-  - [Reject Order](#reject-order)
-  - [Mark Order as Ready](#mark-order-as-ready)
-  - [Mark Order as Delivered](#mark-order-as-delivered)
-  - [Confirm Preorder](#confirm-preorder)
-  - [Example](#example)
+    - [Sync Menu](#sync-menu)
+    - [Get Order](#get-order)
+    - [Accept Order](#accept-order)
+    - [Reject Order](#reject-order)
+    - [Mark Order as Ready](#mark-order-as-ready)
+    - [Mark Order as Delivered](#mark-order-as-delivered)
+    - [Confirm Preorder](#confirm-preorder)
+    - **[Example of Syncing Menu](#example-of-syncing-menu)**
 - [Contribution Guidelines](#contribution-guidelines)
 - [Changelog](#changelog)
 - [License](#license)
@@ -62,16 +63,215 @@ WOLT_IS_SANDBOX=true/false
 
 ### Sync Menu
 
-To sync your menu with Wolt, use the `WoltService::syncMenu` method.
+To sync your menu with Wolt, use the `WoltService::syncMenu` method. <br>
+Here is an example of how you can use the DTOs to create a menu and sync it with Wolt.
 
 ```php
-use BoredProgrammers\Wolt\DTO\WoltDTO;
-use BoredProgrammers\Wolt\WoltService;
+use BoredProgrammers\Wolt\DTO\MenuData;
+use BoredProgrammers\Wolt\DTO\CategoryData;
+use BoredProgrammers\Wolt\DTO\SubcategoryData;
+use BoredProgrammers\Wolt\DTO\ItemData;
+use BoredProgrammers\Wolt\DTO\TranslationData;
+use BoredProgrammers\Wolt\DTO\CaffeineContentData;
+use BoredProgrammers\Wolt\DTO\WeeklyAvailabilityData;
+use BoredProgrammers\Wolt\DTO\WeeklyVisibilityData;
+use BoredProgrammers\Wolt\DTO\OptionData;
+use BoredProgrammers\Wolt\DTO\SelectionRangeData;
+use BoredProgrammers\Wolt\DTO\OptionValueData;
+use BoredProgrammers\Wolt\DTO\SubOptionValueData;
+use BoredProgrammers\Wolt\DTO\ProductInformationData;
+use BoredProgrammers\Wolt\DTO\NutritionInformationData;
+use BoredProgrammers\Wolt\DTO\NutritionValuesData;
+use BoredProgrammers\Wolt\DTO\NutrientData;
+use Spatie\LaravelData\DataCollection;
 
-$menuData = new WoltDTO(
-    currency: 'EUR',
+// Example Translations for Category
+$categoryNameTranslation = new DataCollection([
+    new TranslationData(lang: 'en', value: 'Beverages'),
+    new TranslationData(lang: 'fr', value: 'Boissons')
+]);
+
+// Example Translations for Subcategory
+$subCategoryNameTranslation = new DataCollection([
+    new TranslationData(lang: 'en', value: 'Hot Drinks'),
+    new TranslationData(lang: 'fr', value: 'Boissons Chaudes')
+]);
+
+// Example Translations for Item
+$itemNameTranslation = new DataCollection([
+    new TranslationData(lang: 'en', value: 'Espresso'),
+    new TranslationData(lang: 'fr', value: 'Espresso')
+]);
+
+$itemDescriptionTranslation = new DataCollection([
+    new TranslationData(lang: 'en', value: 'Rich and bold espresso coffee'),
+    new TranslationData(lang: 'fr', value: 'Café espresso riche et audacieux')
+]);
+
+// Example Translations for Options
+$optionNameTranslation = new DataCollection([
+    new TranslationData(lang: 'en', value: 'Milk Type'),
+    new TranslationData(lang: 'fr', value: 'Type de Lait')
+]);
+
+$optionValueNameTranslation1 = new DataCollection([
+    new TranslationData(lang: 'en', value: 'Whole Milk'),
+    new TranslationData(lang: 'fr', value: 'Lait entier')
+]);
+
+$optionValueNameTranslation2 = new DataCollection([
+    new TranslationData(lang: 'en', value: 'Soy Milk'),
+    new TranslationData(lang: 'fr', value: 'Lait de soja')
+]);
+
+// Example Sub-option Value
+$subOptionValueNameTranslation = new DataCollection([
+    new TranslationData(lang: 'en', value: 'Vanilla Syrup'),
+    new TranslationData(lang: 'fr', value: 'Sirop de vanille')
+]);
+
+// Example Product Information
+$productInformation = new ProductInformationData(
+    ingredients: new DataCollection([
+        new TranslationData(lang: 'en', value: 'Water, Coffee Beans'),
+        new TranslationData(lang: 'fr', value: 'Eau, Grains de café')
+    ]),
+    additives: new DataCollection([
+        new TranslationData(lang: 'en', value: 'None'),
+        new TranslationData(lang: 'fr', value: 'Aucun')
+    ]),
+    nutrition_facts: new DataCollection([
+        new TranslationData(lang: 'en', value: 'Low calories'),
+        new TranslationData(lang: 'fr', value: 'Faible en calories')
+    ]),
+    allergens: new DataCollection([
+        new TranslationData(lang: 'en', value: 'None'),
+        new TranslationData(lang: 'fr', value: 'Aucun')
+    ]),
+    producer_information: new DataCollection([
+        new TranslationData(lang: 'en', value: 'Local Roastery'),
+        new TranslationData(lang: 'fr', value: 'Torréfacteur local')
+    ])
+);
+
+// Example Nutrition Information
+$nutritionInformation = new NutritionInformationData(
+    serving_size: 'per_100_ml',
+    nutrition_values: new NutritionValuesData(
+        energy_kcal: new NutrientData(unit: 'kcal', value: 5),
+        energy_kj: new NutrientData(unit: 'kj', value: 20),
+        fats: new NutrientData(unit: 'g', value: 0.1),
+        saturated_fats: new NutrientData(unit: 'g', value: 0.05),
+        mono_unsaturated_fats: new NutrientData(unit: 'g', value: 0.01),
+        poly_unsaturated_fats: new NutrientData(unit: 'g', value: 0.01),
+        carbohydrate: new NutrientData(unit: 'g', value: 0.5),
+        sugar: new NutrientData(unit: 'g', value: 0.1),
+        starch: new NutrientData(unit: 'g', value: 0.2),
+        polyols: new NutrientData(unit: 'g', value: 0.0),
+        protein: new NutrientData(unit: 'g', value: 0.2),
+        salt: new NutrientData(unit: 'g', value: 0.01),
+        sodium: new NutrientData(unit: 'mg', value: 5),
+        fibres: new NutrientData(unit: 'g', value: 0.1),
+        vitamin_c: new NutrientData(unit: 'mg', value: 0.0),
+        potassium: new NutrientData(unit: 'mg', value: 80),
+        calcium: new NutrientData(unit: 'mg', value: 10),
+        magnesium: new NutrientData(unit: 'mg', value: 2),
+        chloride: new NutrientData(unit: 'mg', value: 5),
+        fluoride: new NutrientData(unit: 'mg', value: 0.0)
+    )
+);
+
+// Example Option with Sub-option Values
+$optionValue1 = new OptionValueData(
+    name: $optionValueNameTranslation1,
+    selection_range: new SelectionRangeData(min: 0, max: 1),
+    price: 0.50,
+    enabled: true,
+    default: true,
+    external_data: 'option-value-1',
+    sub_option_values: new DataCollection([
+        new SubOptionValueData(
+            name: $subOptionValueNameTranslation,
+            selection_range: new SelectionRangeData(min: 0, max: 1),
+            price: 0.20,
+            enabled: true,
+            default: false,
+            external_data: 'sub-option-value-1'
+        )
+    ])
+);
+
+$optionValue2 = new OptionValueData(
+    name: $optionValueNameTranslation2,
+    selection_range: new SelectionRangeData(min: 0, max: 1),
+    price: 0.60,
+    enabled: true,
+    default: false,
+    external_data: 'option-value-2',
+    sub_option_values: null
+);
+
+$option = new OptionData(
+    name: $optionNameTranslation,
+    type: 'SingleChoice',
+    selection_range: new SelectionRangeData(min: 1, max: 1),
+    external_data: 'option-1',
+    values: new DataCollection([$optionValue1, $optionValue2])
+);
+
+// Example Item
+$item = new ItemData(
+    name: $itemNameTranslation,
+    description: $itemDescriptionTranslation,
+    image_url: 'https://example.com/espresso.jpg',
+    price: 2.99,
+    sales_tax_percentage: 0.07,
+    alcohol_percentage: null,
+    caffeine_content: new CaffeineContentData(serving_size: 'per_100_ml', value: 212.0),
+    weekly_availability: new DataCollection([
+        new WeeklyAvailabilityData(
+            opening_day: 'MONDAY',
+            opening_time: '08:00',
+            closing_day: 'SUNDAY',
+            closing_time: '20:00'
+        )
+    ]),
+    weekly_visibility: new DataCollection([
+        new WeeklyVisibilityData(
+            opening_day: 'MONDAY',
+            opening_time: '08:00',
+            closing_day: 'SUNDAY',
+            closing_time: '20:00'
+        )
+    ]),
+    enabled: true,
+    delivery_methods: ['takeaway', 'homedelivery'],
+    options: new DataCollection([$option]),
+    external_data: 'item-espresso-001',
+    product_information: $productInformation
+);
+
+// Example Subcategory
+$subcategory = new SubcategoryData(
+    name: $subCategoryNameTranslation,
+    description: null,
+    items: new DataCollection([$item])
+);
+
+// Example Category
+$category = new CategoryData(
+    id: 'beverages',
+    name: $categoryNameTranslation,
+    description: null,
+    subcategories: new DataCollection([$subcategory])
+);
+
+// Example Menu
+$menu = new MenuData(
+    id: 'menu-advanced',
+    currency: 'USD',
     primary_language: 'en',
-    categories: $categories // This should be an array or collection of CategoryData objects
+    categories: new DataCollection([$category])
 );
 
 $response = WoltService::syncMenu($menuData);
@@ -79,10 +279,12 @@ $response = WoltService::syncMenu($menuData);
 
 ### Get Order
 
-To retrieve an order, use the `WoltService::getOrder` method.  
-You will get Order ID from your webhook called by Wolt.  
-More about it here: [Wolt Webhook Documentation](https://developer.development.dev.woltapi.com/docs/marketplace-integrations/restaurant-ipad-free#webhook-server).  
-I recommend using `spatie/laravel-webhook-client` package for handling webhooks.
+To retrieve an order, use the `WoltService::getOrder` method.
+
+> You will get Order ID from your webhook called by Wolt.  
+> More about it > here: [Wolt Webhook Documentation](https://developer.development.dev.woltapi.com/docs/marketplace-integrations/restaurant-ipad-free#webhook-server).
+
+> I recommend using `spatie/laravel-webhook-client` package for handling webhooks.
 
 ```php
 use BoredProgrammers\Wolt\WoltService;
@@ -146,80 +348,12 @@ $orderId = 'your_wolt_order_id';
 $response = WoltService::confirmPreorder($orderId);
 ```
 
-### Example
-
-Here is an example of how you can use Wolt in your Laravel application:
-
-```php
-use BoredProgrammers\Wolt\DTO\WoltDTO;
-use BoredProgrammers\Wolt\DTO\CategoryData;
-use BoredProgrammers\Wolt\DTO\ItemData;
-use BoredProgrammers\Wolt\DTO\LanguageValueData;
-use BoredProgrammers\Wolt\DTO\WeeklyAvailability;
-use Illuminate\Support\Collection;
-
-// Create LanguageValueData objects
-$languageValues = [
-    new LanguageValueData('Karamell, Nuss, Vanille', 'de'),
-    new LanguageValueData('Caramel, walnut, vanilla', 'en'),
-    new LanguageValueData('Sirup - karamel, oříšek, vanilka', 'cs')
-];
-
-// Create ItemData objects
-$items = [
-    new ItemData(
-        name: $languageValues,
-        options: [],
-        price: 19.0,
-        image_url: 'https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg',
-        external_data: 'your_internal_id_for_pairing',
-        sales_tax_percentage: 0.0,
-        enabled: true,
-        delivery_methods: [
-            WoltDeliveryType::HOME_DELIVERY,
-            WoltDeliveryType::TAKEAWAY
-        ]
-    )
-    // Add more ItemData objects as needed
-];
-
-// Create WeeklyAvailability objects
-$weeklyAvailability = [
-    new WeeklyAvailability('6', '07:00', '6', '11:00'),
-    new WeeklyAvailability('0', '07:00', '0', '11:00'),
-    new WeeklyAvailability('1', '07:00', '1', '11:00'),
-    new WeeklyAvailability('2', '07:00', '2', '11:00'),
-    new WeeklyAvailability('3', '07:00', '3', '11:00'),
-    new WeeklyAvailability('4', '07:00', '4', '11:00'),
-    new WeeklyAvailability('5', '07:00', '5', '11:00')
-];
-
-// Create CategoryData objects
-$categories = [
-    new CategoryData(
-        items: new Collection($items),
-        name: new Collection([new LanguageValueData('Snídaně', 'cs')]),
-        weekly_availability: new Collection($weeklyAvailability)
-    )
-    // Add more CategoryData objects as needed
-];
-
-// Create WoltDTO object
-$woltDTO = new WoltDTO(
-    currency: 'CZK',
-    primary_language: 'cs',
-    categories: new Collection($categories)
-);
-
-// Now $woltDTO is structured as required
-```
-
 ## Contribution Guidelines
 
-We welcome contributions to Wolt. If you'd like to contribute, please fork the repository, make your changes, and submit a pull request. We have a few requirements for contributions:
+We welcome contributions to Wolt. If you'd like to contribute, please fork the repository, make your changes, and submit
+a pull request. We have a few requirements for contributions:
 
 - Follow the PSR-2 coding standard.
-- Write tests for new features and bug fixes.
 - Only use pull requests for contributions.
 
 ## Changelog
@@ -232,11 +366,13 @@ This project is licensed under the [MIT license](https://github.com/Bored-Progra
 
 ## Contact Information
 
-For any questions or concerns, please feel free to create a [discussion](https://github.com/Bored-Programmers/wolt/discussions) on GitHub.
+For any questions or concerns, please feel free to create
+a [discussion](https://github.com/Bored-Programmers/wolt/discussions) on GitHub.
 
 ## Credits
 
-Created by [Matěj Černý](https://github.com/LeMatosDeFuk) from [Bored Programmers](https://github.com/Bored-Programmers).
+Created by [Matěj Černý](https://github.com/LeMatosDeFuk)
+from [Bored Programmers](https://github.com/Bored-Programmers).
 
 ## Acknowledgments
 

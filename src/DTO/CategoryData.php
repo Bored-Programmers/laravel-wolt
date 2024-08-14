@@ -7,13 +7,17 @@ use Spatie\LaravelData\DataCollection;
 
 class CategoryData extends Data
 {
+
     public function __construct(
         public string $id,
-        /** @var \BoredProgrammers\Wolt\DTO\TranslationData[] */
+        /** @var TranslationData[] */
         public DataCollection $name,
-        /** @var \BoredProgrammers\Wolt\DTO\TranslationData[]|null */
+        /** @var SubcategoryData[] */
+        public DataCollection $subcategories,
+        /** @var TranslationData[]|null */
         public ?DataCollection $description = null,
-        /** @var \BoredProgrammers\Wolt\DTO\SubcategoryData[] */
-        public DataCollection $subcategories
-    ) {}
+    )
+    {
+    }
+
 }
