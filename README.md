@@ -130,30 +130,6 @@ $subOptionValueNameTranslation = new DataCollection([
     new TranslationData(lang: 'fr', value: 'Sirop de vanille')
 ]);
 
-// Example Product Information
-$productInformation = new ProductInformationData(
-    ingredients: new DataCollection([
-        new TranslationData(lang: 'en', value: 'Water, Coffee Beans'),
-        new TranslationData(lang: 'fr', value: 'Eau, Grains de café')
-    ]),
-    additives: new DataCollection([
-        new TranslationData(lang: 'en', value: 'None'),
-        new TranslationData(lang: 'fr', value: 'Aucun')
-    ]),
-    nutrition_facts: new DataCollection([
-        new TranslationData(lang: 'en', value: 'Low calories'),
-        new TranslationData(lang: 'fr', value: 'Faible en calories')
-    ]),
-    allergens: new DataCollection([
-        new TranslationData(lang: 'en', value: 'None'),
-        new TranslationData(lang: 'fr', value: 'Aucun')
-    ]),
-    producer_information: new DataCollection([
-        new TranslationData(lang: 'en', value: 'Local Roastery'),
-        new TranslationData(lang: 'fr', value: 'Torréfacteur local')
-    ])
-);
-
 // Example Nutrition Information
 $nutritionInformation = new NutritionInformationData(
     serving_size: 'per_100_ml',
@@ -179,6 +155,31 @@ $nutritionInformation = new NutritionInformationData(
         chloride: new NutrientData(unit: 'mg', value: 5),
         fluoride: new NutrientData(unit: 'mg', value: 0.0)
     )
+);
+
+// Example Product Information
+$productInformation = new ProductInformationData(
+    ingredients: new DataCollection([
+        new TranslationData(lang: 'en', value: 'Water, Coffee Beans'),
+        new TranslationData(lang: 'fr', value: 'Eau, Grains de café')
+    ]),
+    additives: new DataCollection([
+        new TranslationData(lang: 'en', value: 'None'),
+        new TranslationData(lang: 'fr', value: 'Aucun')
+    ]),
+    nutrition_facts: new DataCollection([
+        new TranslationData(lang: 'en', value: 'Low calories'),
+        new TranslationData(lang: 'fr', value: 'Faible en calories')
+    ]),
+    nutrition_information: $nutritionInformation,
+    allergens: new DataCollection([
+        new TranslationData(lang: 'en', value: 'None'),
+        new TranslationData(lang: 'fr', value: 'Aucun')
+    ]),
+    producer_information: new DataCollection([
+        new TranslationData(lang: 'en', value: 'Local Roastery'),
+        new TranslationData(lang: 'fr', value: 'Torréfacteur local')
+    ])
 );
 
 // Example Option with Sub-option Values
@@ -232,7 +233,7 @@ $item = new ItemData(
         new WeeklyAvailabilityData(
             opening_day: 'MONDAY',
             opening_time: '08:00',
-            closing_day: 'SUNDAY',
+            closing_day: 'MONDAY',
             closing_time: '20:00'
         )
     ]),
@@ -240,7 +241,7 @@ $item = new ItemData(
         new WeeklyVisibilityData(
             opening_day: 'MONDAY',
             opening_time: '08:00',
-            closing_day: 'SUNDAY',
+            closing_day: 'MONDAY',
             closing_time: '20:00'
         )
     ]),
