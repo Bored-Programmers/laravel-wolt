@@ -1,17 +1,19 @@
 <?php
 
-use BoredProgrammers\Wolt\DTO\WoltDTO;
+namespace BoredProgrammers\Wolt;
+
+use BoredProgrammers\Wolt\DTO\MenuData;
 use Illuminate\Http\Client\Response;
 
 class WoltService
 {
 
-    public static function syncMenu(WoltDTO $data): Response
+    public static function syncMenu(MenuData $data): Response
     {
         return WoltClient::create()
             ->setEndpoint('/v1/restaurants/{venueId}/menu')
             ->setRouteParameters(['venueId' => config('wolt.venue_id')])
-            ->post((array)$data);
+            ->post($data->toArray());
     }
 
     public static function getOrder($orderId): Response

@@ -1,7 +1,5 @@
 # Laravel Wolt API Integration
 
-🚧 **This package is in development, and is not ready for use in production yet.** 🚧
-
 <img src="./resources/assets/img/logo.webp" alt="Wolt Logo" height="400" width="400">
 
 [![Latest Stable Version](https://poser.pugx.org/bored-programmers/wolt/v)](//packagist.org/packages/bored-programmers/wolt)

@@ -1,5 +1,6 @@
 <?php
 
+namespace BoredProgrammers\Wolt;
 
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
