@@ -40,7 +40,7 @@ easy-to-use API for syncing your menu and managing orders.
 To install Wolt, you need to run the following command:
 
 ```bash
-composer require bored-programmers/wolt
+composer require bored-programmers/laravel-wolt
 ```
 
 Publish the configuration file and set up your environment variables.

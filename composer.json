@@ -1,5 +1,5 @@
 {
-  "name": "bored-programmers/wolt",
+  "name": "bored-programmers/laravel-wolt",
   "description": "Wolt is a Laravel package that allows you to integrate your restaurant with the Wolt platform. It provides a simple and easy-to-use API for syncing your menu and managing orders.",
   "keywords": [
     "laravel",
