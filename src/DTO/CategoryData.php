@@ -14,6 +14,8 @@ class CategoryData extends Data
         public DataCollection $name,
         /** @var SubcategoryData[]|Optional */
         public DataCollection|Optional $subcategories,
+        /** @var ItemData[] */
+        public DataCollection $items,
         /** @var TranslationData[]|Optional */
         public DataCollection|Optional $description,
     )
