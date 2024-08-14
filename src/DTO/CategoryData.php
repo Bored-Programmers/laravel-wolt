@@ -18,6 +18,8 @@ class CategoryData extends Data
         public DataCollection $items,
         /** @var TranslationData[]|Optional */
         public DataCollection|Optional $description,
+        /** @var WeeklyAvailabilityData[]|null */
+        public Optional|DataCollection $weekly_availability,
     )
     {
     }

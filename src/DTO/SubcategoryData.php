@@ -16,6 +16,8 @@ class SubcategoryData extends Data
         public DataCollection $items,
         /** @var TranslationData[]|Optional */
         public Optional|DataCollection $description,
+        /** @var WeeklyAvailabilityData[]|null */
+        public Optional|DataCollection $weekly_availability,
     )
     {
     }
