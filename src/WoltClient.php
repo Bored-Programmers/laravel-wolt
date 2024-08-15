@@ -32,6 +32,8 @@ class WoltClient
                 : config('wolt.production_url')
         );
 
+        $client->addHeader('WOLT-API-KEY', config('wolt.order_api_key'));
+
         return $client;
     }
 
