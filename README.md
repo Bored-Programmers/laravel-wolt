@@ -168,9 +168,7 @@ $productInformation = ProductInformationData::from([
         TranslationData::from(['lang' => 'en', 'value' => 'Low calories']),
         TranslationData::from(['lang' => 'fr', 'value' => 'Faible en calories'])
     ]),
-    'nutrition_information' => $
-
-nutritionInformation,
+    'nutrition_information' => $nutritionInformation,
     'allergens' => new DataCollection([
         TranslationData::from(['lang' => 'en', 'value' => 'None']),
         TranslationData::from(['lang' => 'fr', 'value' => 'Aucun'])
