@@ -33,6 +33,7 @@ class WoltClient
         );
 
         $client->addHeader('WOLT-API-KEY', config('wolt.order_api_key'));
+        $client->addRouteParameter('baseUrl', $client->baseUrl);
 
         return $client;
     }
@@ -44,7 +45,6 @@ class WoltClient
             config('wolt.menu_password')
         );
 
-        $this->addRouteParameter('baseUrl', $this->baseUrl);
         $this->setRequest($request);
     }
 
