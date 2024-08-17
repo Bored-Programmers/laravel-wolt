@@ -32,8 +32,6 @@ class WoltClient
                 : config('wolt.production_url')
         );
 
-        $client->addHeader('WOLT-API-KEY', config('wolt.order_api_key'));
-
         return $client;
     }
 
@@ -50,6 +48,7 @@ class WoltClient
     public function prepareRequest(): PendingRequest
     {
         $this->addRouteParameter('baseUrl', $this->baseUrl);
+        $this->addHeader('WOLT-API-KEY', config('wolt.order_api_key'));
 
         return $this->request
             ->withUrlParameters($this->routeParameters)
