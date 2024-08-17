@@ -44,13 +44,12 @@ class WoltClient
             config('wolt.menu_password')
         );
 
+        $this->addRouteParameter('baseUrl', $this->baseUrl);
         $this->setRequest($request);
     }
 
     public function prepareRequest(): PendingRequest
     {
-        $this->addRouteParameter('baseUrl', $this->baseUrl);
-
         return $this->request
             ->withUrlParameters($this->routeParameters)
             ->withHeaders($this->headers)
