@@ -32,12 +32,12 @@ class WoltService
             ->put();
     }
 
-    public static function rejectOrder($orderId): Response
+    public static function rejectOrder($orderId, string $reason): Response
     {
         return WoltClient::create()
             ->setEndpoint('/orders/{orderId}/reject')
             ->setRouteParameters(['orderId' => $orderId])
-            ->put();
+            ->put(['reason' => $reason]);
     }
 
     public static function markReadyOrder($orderId): Response
