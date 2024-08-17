@@ -70,23 +70,13 @@ class WoltClient
             ->post($this->getFullUrl(), $data);
     }
 
-
-    public function patch(array $data = []): Response
+    public function put(null|array $data = null): Response
     {
         return $this->prepareRequest()
-            ->patch($this->getFullUrl(), $data);
-    }
+            ->send('PUT', $this->getFullUrl(), [
+                'json' => $data,
+            ]);
 
-    public function put(array $data = []): Response
-    {
-        return $this->prepareRequest()
-            ->put($this->getFullUrl(), $data);
-    }
-
-    public function delete(array $data = []): Response
-    {
-        return $this->prepareRequest()
-            ->delete($this->getFullUrl(), $data);
     }
 
     /******************** SETTERS && GETTERS ********************/
