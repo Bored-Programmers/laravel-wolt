@@ -24,12 +24,18 @@ class WoltService
             ->get();
     }
 
-    public static function acceptOrder($orderId): Response
+    public static function acceptOrder($orderId, ?string $adjustedPickupTime = null): Response
     {
+        $body = [];
+
+        if ($adjustedPickupTime) {
+            $body['adjusted_pickup_time'] = $adjustedPickupTime;
+        }
+
         return WoltClient::create()
             ->setEndpoint('/orders/{orderId}/accept')
             ->setRouteParameters(['orderId' => $orderId])
-            ->put();
+            ->put($body);
     }
 
     public static function rejectOrder($orderId, string $reason): Response
